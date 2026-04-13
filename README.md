@@ -90,8 +90,8 @@ The connective tissue is all file-based.  `projects.yaml` is the single source o
 
 ### Background
 
-Army Signal Officer, then Army Red Team.  Full-spectrum cyber and information warfare assessments across DoD commands.  NSA Red Team Boot Camp.
+Army Signal Corps Officer through Cyber Warfare Officer.  Army Red Team.  Full-spectrum cyber and information warfare assessments across DoD commands.  NSA Red Team Boot Camp.
 
-Booz Allen Hamilton since 2010.  Zero Trust programs, enterprise security architecture, CIO/CISO advisory.
+Booz Allen Hamilton since 2008.  Zero Trust programs, enterprise security architecture, CIO/CISO advisory.
 
 The problems I'm working on now are the same ones I've watched persist for 30 years.  Agentic AI is the current front.
