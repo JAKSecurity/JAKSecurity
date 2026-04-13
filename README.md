@@ -41,10 +41,10 @@ These aren't packages you `pip install`.  They're reference architectures.  Poin
 ### How They Connect
 
 ```
-                    ┌─────────────────────────────────┐
-                    │         Claude Code             │
-                    │     (brain + orchestrator)      │
-                    └──────────┬──────────────────────┘
+                 ┌───────────────────────────────┐
+                 │         Claude Code           │
+                 │     (brain + orchestrator)    │
+                 └─────────────┬─────────────────┘
                                │
             ┌──────────────────┼───────────────────────┐
             │                  │                       │
