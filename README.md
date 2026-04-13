@@ -42,17 +42,17 @@ These aren't packages you `pip install`.  They're reference architectures.  Poin
 
 ```
                     ┌─────────────────────────────────┐
-                    │         Claude Code              │
-                    │     (brain + orchestrator)        │
+                    │         Claude Code             │
+                    │     (brain + orchestrator)      │
                     └──────────┬──────────────────────┘
                                │
-            ┌──────────────────┼──────────────────────┐
+            ┌──────────────────┼───────────────────────┐
             │                  │                       │
    Scheduled Tasks        Skills & CLAUDE.md      Interactive
    (unattended)           (session context)        Sessions
             │                  │                       │
-    ┌───────┴───────┐    ┌─────┴─────┐          ┌─────┴──────┐
-    │               │    │           │          │            │
+    ┌───────┴───────┐    ┌─────┴─────┐           ┌─────┴──────┐
+    │               │    │           │           │            │
  Briefing    Reconciliation  Brain     Tracking    Ad hoc work
  Pipeline       Engine      System    Dashboard
     │               │         │           │
@@ -61,11 +61,11 @@ These aren't packages you `pip install`.  They're reference architectures.  Poin
             │          index.yaml  transcripts
             │            entries/   archive
             │
-    ┌───────┴───────┐
-    │  claude-notify │
+    ┌───────┴─────────┐
+    │  claude-notify  │
     │  Discord │ Email│
-    │  Push  │  TTS  │
-    └────────────────┘
+    │  Push  │  TTS   │
+    └─────────────────┘
 ```
 
 The connective tissue is all file-based.  `projects.yaml` is the single source of truth for project state.  Brain entries use a YAML index with markdown files.  Briefing stages communicate through staging files.  The dashboard reads everything live at request time.  No message queues, no databases, no API contracts between services.
