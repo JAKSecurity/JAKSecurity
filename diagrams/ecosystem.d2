@@ -1,0 +1,114 @@
+# Claude-Native AI Assistant Ecosystem — JAKSecurity
+# Shows how the five public repos relate: claude-notify as the delivery substrate,
+# claude-brain / claude-tracking / claude-briefing as upper-layer systems,
+# and SPECTRA as an independent pipeline consumer.
+
+...@~/.claude/skills/d2-diagram/assets/jak-dark
+
+direction: down
+
+# ── Top tier: runtime context for everything ─────────────────────────────────
+
+claude_code: Claude Code {
+  class: llm
+  icon: https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/anthropic.svg
+  label: Claude Code\nscheduled tasks • skills • sessions
+}
+
+# ── Mid tier: three upper-layer systems ──────────────────────────────────────
+
+systems: {
+  class: panel
+  label: Claude-Native AI Assistant
+
+  brain: claude-brain {
+    class: agent
+    icon: https://api.iconify.design/tabler/brain.svg
+    label: claude-brain\ncross-project knowledge base\nbrain entries • transcript archive\nSessionStart hook
+  }
+
+  tracking: claude-tracking {
+    class: service
+    icon: https://api.iconify.design/tabler/chart-bar.svg
+    label: claude-tracking\n4-tier project tracking\nreconciliation engine • dashboard\nGitHub Projects sync
+  }
+
+  briefing: claude-briefing {
+    class: compute
+    icon: https://api.iconify.design/tabler/rss.svg
+    label: claude-briefing\nmorning briefing pipeline\nweather • news • project status\nassembler + watchdog
+  }
+}
+
+# ── Foundation: shared delivery library ──────────────────────────────────────
+
+notify: claude-notify {
+  class: queue
+  icon: https://api.iconify.design/tabler/send.svg
+  label: claude-notify\nshared delivery substrate
+}
+
+channels: {
+  class: panel
+  label: Delivery Channels
+
+  discord_ch: Discord {
+    class: external
+    icon: https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg
+  }
+
+  email_ch: Email {
+    class: external
+    icon: https://api.iconify.design/tabler/mail.svg
+  }
+
+  push_ch: Push (ntfy) {
+    class: external
+    icon: https://api.iconify.design/tabler/bell.svg
+  }
+
+  tts_ch: TTS Audio {
+    class: external
+    icon: https://api.iconify.design/tabler/microphone.svg
+  }
+}
+
+# ── Standalone: SPECTRA pipeline ─────────────────────────────────────────────
+
+spectra: SPECTRA {
+  class: panel
+  label: SPECTRA — Cybersecurity Digest
+
+  sources_node: 17 RSS/API Sources {
+    class: external
+    icon: https://api.iconify.design/tabler/world.svg
+  }
+
+  pipeline_node: Collect → Curate → Render {
+    class: compute
+    icon: https://api.iconify.design/tabler/robot.svg
+    label: Collect → Curate → Render\n17 sources • AI curation • PDF
+  }
+}
+
+# ── Connections ───────────────────────────────────────────────────────────────
+
+# Claude Code orchestrates all three upper-layer systems
+claude_code -> systems.brain: session context
+claude_code -> systems.tracking: reconciliation
+claude_code -> systems.briefing: scheduled pipeline
+
+# Upper-layer systems use notify for delivery
+systems.brain -> notify: session summaries
+systems.tracking -> notify: nudges + reports
+systems.briefing -> notify: daily briefing + MP3
+
+# Notify fans out to channels
+notify -> channels.discord_ch: webhook
+notify -> channels.email_ch: SMTP
+notify -> channels.push_ch: ntfy.sh
+notify -> channels.tts_ch: Edge TTS
+
+# SPECTRA is standalone but also uses notify
+spectra.sources_node -> spectra.pipeline_node: raw feeds
+spectra.pipeline_node -> notify: monthly digest + PDF

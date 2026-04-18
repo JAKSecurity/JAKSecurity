@@ -40,35 +40,9 @@ These aren't packages you `pip install`.  They're reference architectures.  Poin
 
 ### How They Connect
 
-```
-                 ┌───────────────────────────────┐
-                 │         Claude Code           │
-                 │     (brain + orchestrator)    │
-                 └─────────────┬─────────────────┘
-                               │
-            ┌──────────────────┼───────────────────────┐
-            │                  │                       │
-   Scheduled Tasks        Skills & CLAUDE.md      Interactive
-   (unattended)           (session context)        Sessions
-            │                  │                       │
-    ┌───────┴───────┐    ┌─────┴─────┐           ┌─────┴──────┐
-    │               │    │           │           │            │
- Briefing    Reconciliation  Brain     Tracking    Ad hoc work
- Pipeline       Engine      System    Dashboard
-    │               │         │           │
-    │               │    ┌────┴────┐      │
-    └───────┬───────┘    │         │      │
-            │          index.yaml  transcripts
-            │            entries/   archive
-            │
-    ┌───────┴─────────┐
-    │  claude-notify  │
-    │  Discord │ Email│
-    │  Push  │  TTS   │
-    └─────────────────┘
-```
+![Claude-Native AI Assistant Ecosystem](diagrams/ecosystem.svg)
 
-The connective tissue is all file-based.  `projects.yaml` is the single source of truth for project state.  Brain entries use a YAML index with markdown files.  Briefing stages communicate through staging files.  The dashboard reads everything live at request time.  No message queues, no databases, no API contracts between services.
+Claude Code sits at the top as both the runtime and the reasoning engine.  The three automation systems — brain, tracking, briefing — each run as scheduled Claude tasks and all route their output through **claude-notify**, the shared delivery substrate.  **SPECTRA** is a standalone pipeline that collects from 17 public sources and also delivers via claude-notify.  The connective tissue is all file-based: `projects.yaml` for project state, brain entries with a YAML index, staging files between pipeline stages.  No message queues, no databases, no API contracts between services.
 
 ---
 
