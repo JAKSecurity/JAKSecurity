@@ -51,6 +51,7 @@ Claude Code sits at the top as both the runtime and the reasoning engine.  The t
 | Repo | What it is |
 |------|------------|
 | **[SPECTRA](https://github.com/JAKSecurity/SPECTRA)** | Automated monthly cybersecurity policy digest.  Collects from 17 RSS/API sources, curates with Claude, renders to PDF.  984 lines, 59 tests, MIT licensed. |
+| **[dod-cert-requirements](https://github.com/JAKSecurity/dod-cert-requirements)** | DoD cyber workforce qualification reference.  Current 8140 certification matrix (45 work roles × 60 certs on a single landscape page, compiled from the official DoDM 8140.03 V2.1 matrix) plus a reconstructed reference copy of the retired 8570 baseline list from the last archived cyber.mil snapshot.  48 tests, MIT + CC-BY-4.0 dual licensed. |
 
 ---
 
